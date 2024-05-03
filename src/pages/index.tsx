@@ -23,6 +23,10 @@ const Home = () => {
       setTurnColor(3 - turnColor);
       setBoard(newBoard);
       for (let b = 0; b < 8; b++) {
+        if (board[y][x + 2] === 0) {
+          break;
+        }
+
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
@@ -44,6 +48,10 @@ const Home = () => {
       setTurnColor(3 - turnColor);
       setBoard(newBoard);
       for (let a = 0; a < 8; a++) {
+        if (board[y + 2][x] === 0) {
+          break;
+        }
+
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
@@ -65,6 +73,10 @@ const Home = () => {
       setTurnColor(3 - turnColor);
       setBoard(newBoard);
       for (let b = 0; b < 8; b++) {
+        if (board[y][x - 2] === 0) {
+          break;
+        }
+
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
@@ -86,6 +98,9 @@ const Home = () => {
       setTurnColor(3 - turnColor);
       setBoard(newBoard);
       for (let a = 0; a < 8; a++) {
+        if (board[y - 2][x] === 0) {
+          break;
+        }
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
