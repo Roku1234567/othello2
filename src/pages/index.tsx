@@ -17,8 +17,8 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 2, 0, 0, 0],
     [0, 0, 0, 2, 1, 0, 0, 0],
+    [0, 0, 0, 1, 2, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -53,7 +53,7 @@ const Home = () => {
 
             break;
           }
-          if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === undefined) {
+          if (board[y + b * dy] === undefined || board[y + b * dy][x + b * dx] === undefined) {
             for (let c = b - 1; 0 < c; c--) {
               newBoard[y + c * dy][x + c * dx] = 3 - turnColor;
             }
@@ -70,10 +70,23 @@ const Home = () => {
       }
     }
   };
+  let black = 0;
+  let white = 0;
+  for (let w = 0; w < 8; w++) {
+    for (let i = 0; i < 8; i++) {
+      if (board[i][w] === 1) {
+        black++;
+      }
+      if (board[i][w] === 2) {
+        white++;
+      }
+    }
+  }
+
   return (
     <div className={styles.container}>
       {turnColor === 1 ? '黒' : '白'}
-
+      {black}対{white}
       <div className={styles.boardStyle}>
         {board.map((row, y) =>
           row.map((color, x) => (
