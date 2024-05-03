@@ -30,13 +30,17 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y][x + b] = turnColor;
+          if (newBoard[y][x + b] !== undefined) {
+            newBoard[y][x + b] = turnColor;
+          }
           if (board[x + b] !== undefined && board[y][x + b] === turnColor) {
             break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
-          newBoard[y][x + b] = turnColor;
+          if (newBoard[y][x + b] !== undefined) {
+            newBoard[y][x + b] = turnColor;
+          }
           if (board[x + b] !== undefined && board[y][x + b] === turnColor) {
             break;
           }
@@ -55,13 +59,17 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y + a][x] = turnColor;
+          if (newBoard[y + a][x] !== undefined) {
+            newBoard[y + a][x] = turnColor;
+          }
           if (board[y + a] !== undefined && board[y + a][x] === turnColor) {
             break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
-          newBoard[y + a][x] = turnColor;
+          if (newBoard[y + a][x] !== undefined) {
+            newBoard[y + a][x] = turnColor;
+          }
           if (board[y + a] !== undefined && board[y + a][x] === turnColor) {
             break;
           }
@@ -80,13 +88,17 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y][x - b] = turnColor;
+          if (newBoard[y][x - b] !== undefined) {
+            newBoard[y][x - b] = turnColor;
+          }
           if (board[x - b] !== undefined && board[y][x - b] === turnColor) {
             break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
-          newBoard[y][x - b] = turnColor;
+          if (newBoard[y][x - b] !== undefined) {
+            newBoard[y][x - b] = turnColor;
+          }
           if (board[x - b] !== undefined && board[y][x - b] === turnColor) {
             break;
           }
@@ -104,13 +116,17 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y - a][x] = turnColor;
+          if (newBoard[y - a][x] !== undefined) {
+            newBoard[y - a][x] = turnColor;
+          }
           if (board[y - a] !== undefined && board[y - a][x] === turnColor) {
             break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
-          newBoard[y - a][x] = turnColor;
+          if (newBoard[y - a][x] !== undefined) {
+            newBoard[y - a][x] = turnColor;
+          }
           if (board[y - a] !== undefined && board[y - a][x] === turnColor) {
             break;
           }
@@ -133,13 +149,17 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y - a][x - a] = turnColor;
+          if (newBoard[y - a][x - a] !== undefined) {
+            newBoard[y - a][x - a] = turnColor;
+          }
           if (board[y - a][x - a] !== undefined && board[y - a][x - a] === turnColor) {
             break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
-          newBoard[y - a][x - a] = turnColor;
+          if (newBoard[y - a][x - a] !== undefined) {
+            newBoard[y - a][x - a] = turnColor;
+          }
           if (board[y - a][x - a] !== undefined && board[y - a][x - a] === turnColor) {
             break;
           }
@@ -161,13 +181,18 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y + a][x - a] = turnColor;
+          if (newBoard[y + a][x - a] !== undefined) {
+            newBoard[y + a][x - a] = turnColor;
+          }
           if (board[y + a][x - a] !== undefined && board[y + a][x - a] === turnColor) {
             break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
-          newBoard[y + a][x - a] = turnColor;
+          if (newBoard[y + a][x - a] !== undefined) {
+            newBoard[y + a][x - a] = turnColor;
+          }
+
           if (board[y + a][x - a] !== undefined && board[y + a][x - a] === turnColor) {
             break;
           }
@@ -189,7 +214,9 @@ const Home = () => {
         console.table(newBoard);
         if (turnColor === 1) {
           newBoard[y][x] = turnColor;
-          newBoard[y - a][x + a] = turnColor;
+          if (newBoard[y - a][x + a] !== undefined) {
+            newBoard[y - a][x + a] = turnColor;
+          }
           if (board[y - a][x + a] !== undefined && board[y - a][x + a] === turnColor) {
             break;
           }
