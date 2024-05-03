@@ -70,14 +70,61 @@ const Home = () => {
       }
     }
   };
+
   let black = 0;
   let white = 0;
-  for (let w = 0; w < 8; w++) {
-    for (let i = 0; i < 8; i++) {
-      if (board[i][w] === 1) {
+  const canBoard = structuredClone(board);
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 8; x++) {
+      for (const direction of directions) {
+        const dx = direction[0];
+        const dy = direction[1];
+
+        if (board[y + 1 * dy] !== undefined && board[y + 1 * dy][x + 1 * dx] === 3 - turnColor) {
+          for (let b = 1; b < 8; b++) {
+            console.table(canBoard);
+
+            if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === turnColor) {
+              if (canBoard[y][x] === 0) {
+                canBoard[y][x] = 3;
+              }
+
+              break;
+            }
+            if (
+              board[y + b * dy] !== undefined &&
+              board[y + b * dy][x + b * dx] === 3 - turnColor
+            ) {
+              // continue;
+            }
+            if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === 0) {
+              // for (let c = b - 1; 0 < c; c--) {
+              //   canBoard[y + c * dy][x + c * dx] = 3 - turnColor;
+              // }
+
+              break;
+            }
+            if (board[y + b * dy] === undefined || board[y + b * dy][x + b * dx] === undefined) {
+              // for (let c = b - 1; 0 < c; c--) {
+              //   canBoard[y + c * dy][x + c * dx] = 3 - turnColor;
+              // }
+
+              break;
+            }
+            // if (
+            //   canBoard[y + b * dy] !== undefined &&
+            //   canBoard[y + b * dy][x + b * dx] !== undefined
+            // ) {
+            //   canBoard[y + b * dy][x + b * dx] = turnColor;
+            // }
+          }
+        }
+      }
+
+      if (board[x][y] === 1) {
         black++;
       }
-      if (board[i][w] === 2) {
+      if (board[x][y] === 2) {
         white++;
       }
     }
@@ -88,13 +135,13 @@ const Home = () => {
       {turnColor === 1 ? '黒' : '白'}
       {black}対{white}
       <div className={styles.boardStyle}>
-        {board.map((row, y) =>
+        {canBoard.map((row, y) =>
           row.map((color, x) => (
             <div className={styles.cellStyle} key={`${x}-${y}`} onClick={() => clickHandler(x, y)}>
               {color !== 0 && (
                 <div
                   className={styles.stoneStyle}
-                  style={{ background: color === 1 ? '#000' : '#fff' }}
+                  style={{ background: color === 1 ? '#000' : color === 2 ? '#fff' : '#eb7210' }}
                 />
               )}
             </div>
