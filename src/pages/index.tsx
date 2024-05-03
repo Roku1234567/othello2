@@ -1,4 +1,3 @@
-import { before } from 'node:test';
 import styles from './index.module.css';
 import { useState } from 'react';
 
@@ -6,13 +5,13 @@ const Home = () => {
   const [turnColor, setTurnColor] = useState(1);
   const [board, setBoard] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 2, 0, 0, 0],
-    [0, 0, 0, 1, 2, 0, 0, 0],
-    [0, 1, 1, 1, 2, 1, 1, 0],
-    [0, 2, 2, 1, 2, 2, 2, 0],
-    [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 2, 1, 0, 0, 0],
-    [1, 2, 2, 2, 2, 2, 2, 0],
+    [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
   ]);
   const clickHandler = (x: number, y: number) => {
     console.log(x, y);
@@ -30,17 +29,11 @@ const Home = () => {
           newBoard[y][x + b] = turnColor;
           if (board[x + b] !== undefined && board[y][x + b] === turnColor) {
             break;
-          } else if (board[x + b] === undefined && board[y][x + b] === turnColor) {
-            break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
           newBoard[y][x + b] = turnColor;
           if (board[x + b] !== undefined && board[y][x + b] === turnColor) {
-            break;
-          } else if (board[x + b] === undefined && board[y][x + b] === turnColor) {
-            break;
-          } else if (board[x + b][y] === 0) {
             break;
           }
         }
@@ -78,19 +71,11 @@ const Home = () => {
           newBoard[y][x - b] = turnColor;
           if (board[x - b] !== undefined && board[y][x - b] === turnColor) {
             break;
-          } else if (board[x - b] === undefined && board[y][x - b] === turnColor) {
-            break;
-          } else if (board[x - b][y] === 0) {
-            break;
           }
         } else if (turnColor === 2) {
           newBoard[y][x] = turnColor;
           newBoard[y][x - b] = turnColor;
           if (board[x - b] !== undefined && board[y][x - b] === turnColor) {
-            break;
-          } else if (board[x - b] === undefined && board[y][x - b] === turnColor) {
-            break;
-          } else if (board[x - b][y] === 0) {
             break;
           }
         }
@@ -112,8 +97,6 @@ const Home = () => {
           newBoard[y][x] = turnColor;
           newBoard[y - a][x] = turnColor;
           if (board[y - a] !== undefined && board[y - a][x] === turnColor) {
-            break;
-          } else if (board[x + a][y] === 0) {
             break;
           }
         }

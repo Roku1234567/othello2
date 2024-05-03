@@ -168,3 +168,111 @@ newBoard[y][x] = turnColor;
 setTurnColor(3 - turnColor);
 setBoard(newBoard);
 }
+
+
+if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+
+  for (let b = 0; b < 8; b++) {
+    if (turnColor === 1) {
+      newBoard[y][x] = turnColor;
+      newBoard[y - b][x] = turnColor;
+      if (board[y - b] !== undefined && board[y - b][x] === turnColor) {
+        break;
+      }
+    } else if (turnColor === 2) {
+      newBoard[y][x] = turnColor;
+      newBoard[y - b][x] = turnColor;
+      if (board[y - b] !== undefined && board[y - b][x] === turnColor) {
+        break;
+      } else if (board[y - b] === undefined) {
+        break;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+  for (let a = 0; a < 8; a++) {
+    if (turnColor === 1) {
+      newBoard[y][x] = turnColor;
+      newBoard[y - a][x] = turnColor;
+      if (board[y - a] !== undefined && board[y - a][x] === turnColor) {
+        break;
+      } else if (board[y - a] === undefined && board[y - a][x] === turnColor) {
+        break;
+      }
+    } else if (turnColor === 2) {
+      newBoard[y][x] = turnColor;
+      newBoard[y - a][x] = turnColor;
+      if (board[y - a] !== undefined && board[y - a][x] === turnColor) {
+        break;
+      }
+    }
+  }
+}
+if (board[x - 1] !== undefined && board[y][x - 1] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+  for (let a = 0; a < 8; a++) {
+    if (turnColor === 1) {
+      newBoard[y][x] = turnColor;
+      newBoard[y][x - a] = turnColor;
+      if (board[x - a] !== undefined && board[y][x - a] === turnColor) {
+        break;
+      }
+    } else if (turnColor === 2) {
+      newBoard[y][x] = turnColor;
+      newBoard[y][x - a] = turnColor;
+      if (board[x - a] !== undefined && board[y][x - a] === turnColor) {
+        break;
+      }
+    }
+  }
+}
+
+if (board[x + 1] !== undefined && board[y][x + 1] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+  for (let a = 0; a < 8; a++) {
+    if (turnColor === 1) {
+      newBoard[y][x] = turnColor;
+      newBoard[y][x + 1] = turnColor;
+      if (board[x + a] !== undefined && board[y][x + a] === turnColor) {
+        break;
+      }
+    } else if (turnColor === 2) {
+      newBoard[y][x] = turnColor;
+      newBoard[y][x + a] = turnColor;
+      if (board[x + a] !== undefined && board[y][x + a] === turnColor) {
+        break;
+      }
+    }
+  }
+}
+
+else if (board[x + b] === undefined && board[y][x + b] === turnColor) {
+  break;
+}
