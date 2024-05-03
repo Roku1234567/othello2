@@ -1,57 +1,84 @@
 import styles from './index.module.css';
+import { useState } from 'react';
 
 const Home = () => {
+  const [turnColor, setTurnColor] = useState(1);
+  const [board, setBoard] = useState([
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 2, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ]);
+  const clickHandler = (x: number, y: number) => {
+    console.log(x, y);
+
+    const newBoard = structuredClone(board);
+    newBoard[y][x] = turnColor;
+    if (board[x + 1] !== undefined && board[y][x + 1] === 3 - turnColor) {
+      newBoard[y][x] = turnColor;
+      setTurnColor(3 - turnColor);
+      setBoard(newBoard);
+      if (turnColor === 1) {
+        newBoard[y][x] = turnColor;
+        newBoard[y][x + 1] = turnColor;
+      }
+    }
+    if (board[y + 1] !== undefined && board[y + 1][x] === 3 - turnColor) {
+      newBoard[y][x] = turnColor;
+      setTurnColor(3 - turnColor);
+      setBoard(newBoard);
+
+      if (turnColor === 1) {
+        newBoard[y][x] = turnColor;
+        newBoard[y + 1][x] = turnColor;
+        if (turnColor === 1) {
+          newBoard[y][x] = turnColor;
+          newBoard[y + 2][x] = turnColor;
+        }
+      } else if (turnColor === 2) {
+        newBoard[y][x] = turnColor;
+        newBoard[y + 1][x] = turnColor;
+      }
+      if (turnColor === 2) {
+        newBoard[y][x] = turnColor;
+        newBoard[y + 2][x] = turnColor;
+      }
+    }
+    if (board[x - 1] !== undefined && board[y][x - 1] === 3 - turnColor) {
+      newBoard[y][x] = turnColor;
+      setTurnColor(3 - turnColor);
+      setBoard(newBoard);
+      if (turnColor === 2) {
+        newBoard[y][x] = turnColor;
+        newBoard[y][x - 1] = turnColor;
+      }
+    }
+    if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor) {
+      newBoard[y][x] = turnColor;
+      setTurnColor(3 - turnColor);
+      setBoard(newBoard);
+    }
+  };
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code} style={{ backgroundColor: '#fafafa' }}>
-            pages/index.js
-          </code>
-        </p>
-
-        <div className={styles.grid}>
-          <a className={styles.card} href="https://nextjs.org/docs">
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a className={styles.card} href="https://nextjs.org/learn">
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a className={styles.card} href="https://github.com/vercel/next.js/tree/master/examples">
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            className={styles.card}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <img src="vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <div className={styles.boardStyle}>
+        {board.map((row, y) =>
+          row.map((color, x) => (
+            <div className={styles.cellStyle} key={`${x}-${y}`} onClick={() => clickHandler(x, y)}>
+              {color !== 0 && (
+                <div
+                  className={styles.stoneStyle}
+                  style={{ background: color === 1 ? '#000' : '#fff' }}
+                />
+              )}
+            </div>
+          )),
+        )}
+      </div>
     </div>
   );
 };
