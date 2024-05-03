@@ -101,3 +101,70 @@ for (let distance = 1; distance < 8; distance++) {
   }
 }
 export default Home;
+
+if (board[y + 1] !== undefined && board[y + 1][x] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+}
+
+
+if (board[y + 1] !== undefined && board[y + 1][x] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+}
+if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+}
+if (board[x + 1] !== undefined && board[y][x + 1] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+}
+if (board[x - 1] !== undefined && board[y][x - 1] === 3 - turnColor) {
+  newBoard[y][x] = turnColor;
+  setTurnColor(3 - turnColor);
+  setBoard(newBoard);
+}
+newBoard[y + 1][x] = turnColor;
+setTurnColor(turnColor);
+setBoard(newBoard);
+
+
+if (turnColor === 1) {
+  newBoard[y][x] = turnColor;
+  newBoard[y + 1][x] = turnColor;
+  if (turnColor === 1) {
+    newBoard[y][x] = turnColor;
+    newBoard[y + 2][x] = turnColor;
+    if (turnColor === 1) {
+      newBoard[y][x] = turnColor;
+      newBoard[y + 3][x] = turnColor;
+    }
+  }
+} else if (turnColor === 2) {
+  newBoard[y][x] = turnColor;
+  newBoard[y + 1][x] = turnColor;
+}
+if (turnColor === 2) {
+  newBoard[y][x] = turnColor;
+  newBoard[y + 2][x] = turnColor;
+}
+}
+if (board[x - 1] !== undefined && board[y][x - 1] === 3 - turnColor) {
+newBoard[y][x] = turnColor;
+setTurnColor(3 - turnColor);
+setBoard(newBoard);
+if (turnColor === 2) {
+  newBoard[y][x] = turnColor;
+  newBoard[y][x - 1] = turnColor;
+}
+}
+if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor) {
+newBoard[y][x] = turnColor;
+setTurnColor(3 - turnColor);
+setBoard(newBoard);
+}
