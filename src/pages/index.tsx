@@ -1,57 +1,67 @@
 import styles from './index.module.css';
 import { useState } from 'react';
+const directions = [
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
+  [0, -1],
+  [0, 1],
+  [1, -1],
+  [1, 0],
+  [1, 1],
+];
 
 const Home = () => {
   const [turnColor, setTurnColor] = useState(1);
   const [board, setBoard] = useState([
-    [0, 2, 2, 2, 2, 2, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 2],
-    [0, 0, 0, 0, 0, 0, 2, 1],
-    [0, 0, 0, 0, 0, 1, 1, 2],
-    [0, 0, 0, 0, 2, 2, 2, 1],
-    [0, 0, 0, 1, 1, 1, 1, 2],
-    [0, 0, 2, 2, 2, 2, 2, 1],
-    [0, 1, 1, 1, 1, 1, 1, 2],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 2, 0, 0, 0],
+    [0, 0, 0, 2, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
   ]);
   const clickHandler = (x: number, y: number) => {
     console.log(x, y);
 
     const newBoard = structuredClone(board);
     newBoard[y][x] = turnColor;
-    if (board[x + 1] !== undefined && board[y][x + 1] === 3 - turnColor) {
-      newBoard[y][x] = turnColor;
-      setTurnColor(3 - turnColor);
-      setBoard(newBoard);
-      for (let b = 0; b < 8; b++) {
-        for (let g = 0; g < 8; b++) {
-          if (board[y][x + g] === turnColor) {
-            break;
-          }
-          if (board[y][x + g] === 0) {
-            break;
-          }
+    const dx = 1;
+    const dy = 0;
+    for (const direction of directions) {
+    }
+
+    if (board[y + 1 * dy] !== undefined && board[y + 1 * dy][x + 1 * dx] === 3 - turnColor) {
+      for (let b = 1; b < 8; b++) {
+        console.table(newBoard);
+
+        if (newBoard[y + b * dy] !== undefined && newBoard[y + b * dy][x + b * dx] !== undefined) {
+          newBoard[y + b * dy][x + b * dx] = turnColor;
         }
-        if (board[y][x + 2] === 0) {
+        if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === turnColor) {
+          newBoard[y][x] = turnColor;
+          setTurnColor(3 - turnColor);
+          setBoard(newBoard);
           break;
         }
+        if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === 3 - turnColor) {
+          continue;
+        }
+        if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === 0) {
+          for (b; 0 < b; b--) {
+            newBoard[y + b * dy][x - b * dx] = 3 - turnColor;
+          }
 
-        console.table(newBoard);
-        if (turnColor === 1) {
-          newBoard[y][x] = turnColor;
-          if (newBoard[y][x + b] !== undefined) {
-            newBoard[y][x + b] = turnColor;
+          break;
+        }
+        if (board[y + b * dy] !== undefined && board[y + b * dy][x + b * dx] === undefined) {
+          for (b; 0 < b; b--) {
+            newBoard[y + b * dy][x - b * dx] = 3 - turnColor;
           }
-          if (board[x + b] !== undefined && board[y][x + b] === turnColor) {
-            break;
-          }
-        } else if (turnColor === 2) {
-          newBoard[y][x] = turnColor;
-          if (newBoard[y][x + b] !== undefined) {
-            newBoard[y][x + b] = turnColor;
-          }
-          if (board[x + b] !== undefined && board[y][x + b] === turnColor) {
-            break;
-          }
+
+          break;
         }
       }
     }
